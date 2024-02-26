@@ -16,6 +16,6 @@ while (1)
 show_prompt();
 get_input(user_command, sizeof(user_command));
 execute_user_command(user_command);
-return (0);
 }
+return (0);
 }

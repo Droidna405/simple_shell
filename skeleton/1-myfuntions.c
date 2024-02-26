@@ -61,11 +61,11 @@ void get_input(char *user_command, size_t size)
  * command.
  * @user_command: The name of the command to execute.
  */
-void execute_user_command(char *user_comand)
+void execute_user_command(const char *user_command)
 {
 	pid_t child_process_id = fork();
 	char full_command_path[256];
-	char *arguments[] = {user_command, NULL};
+	const char **arguments;
 
 	if (child_process_id == -1)
 	{
@@ -74,11 +74,27 @@ void execute_user_command(char *user_comand)
 	}
 	else if (child_process_id == 0)
 	{
+
 		snprintf(full_command_path, sizeof(full_command_path),
-		"/usr/bin/%s", user_command);
-		execve(full_command_path, arguments,  NULL);
+		"/bin/%s", user_command);
+
+		arguments = malloc(2 * sizeof(char *));
+		if (arguments == NULL)
+		{
+			perror("malloc");
+			exit(EXIT_FAILURE);
+		}
+		arguments[0] = user_command;
+		arguments[1] = NULL;
+
+
+		if (execve(full_command_path,(char *const *) arguments,  NULL) == -1)
+		{
 		perror("execve");
 		exit(EXIT_FAILURE);
+		}
+		free(arguments);
+		exit(EXIT_SUCCESS);
 	}
 	else
 		wait(NULL);
