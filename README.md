@@ -1,5 +1,5 @@
 ## Simple Shell ##
-Project by <Ogada Mbeke Brian> & <Joel H. Mwangala>
+Project by Ogada Mbeke Brian & Joel H. Mwangala
 #General Requirements#
 The output:
 Unless specified otherwise, your program must have the exact same output

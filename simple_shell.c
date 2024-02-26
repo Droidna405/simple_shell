@@ -1,12 +1,4 @@
 #include "simple_shell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/wait.h>
-
-#define BUFFER_SIZE 1024
-#define DELIMITER " \t\n"
 
 /**
  * main - entry point
@@ -14,8 +6,17 @@
  * mode based on command-line arguments.
  * Return: nothing
  */
-int main(void)
+int main(void) {
+char user_command[256]; // Define a buffer to store user input
+
+while (1)
 {
-read_execute_loop();
-return (EXIT_SUCCESS);
+show_prompt(); /* Display the prompt */
+get_input(user_command, sizeof(user_command)); /* Get user input */
+
+/* Execute the user command */
+execute_user_command(user_command);
+}
+
+return (0);
 }
