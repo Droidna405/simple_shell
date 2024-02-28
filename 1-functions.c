@@ -60,6 +60,7 @@ void execute_user_command(char *user_command)
 {
 pid_t child_process_id = fork();
 char *arguments[2];
+/*char full_command_path[256];*/
 
 if (child_process_id == -1)
 {
@@ -71,7 +72,7 @@ else if (child_process_id == 0)
 arguments[0] = user_command;
 arguments[1] = NULL;
 execvp(user_command, arguments);
-perror("execvp");
+perror("execve");
 exit(EXIT_FAILURE);
 }
 else

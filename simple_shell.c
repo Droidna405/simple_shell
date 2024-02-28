@@ -14,6 +14,11 @@ while (1)
 {
 show_prompt(); /* Display the prompt */
 get_input(user_command, sizeof(user_command)); /* Get user input */
+if (feof(stdin))/*Check for EOF*/
+{
+my_print("\n", STDOUT_FILENO);
+break;
+}
 
 /* Execute the user command */
 execute_user_command(user_command);

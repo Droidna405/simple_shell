@@ -11,6 +11,7 @@
 #define BUFFER_SIZE 1024
 #define DELIMITER " \t\n"
 
+/*extern char **environ;*/
 /* Function prototypes */
 void read_execute_loop(void);
 int handle_builtin_command(const char *command);
