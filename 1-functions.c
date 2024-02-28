@@ -59,7 +59,7 @@ user_command[strcspn(user_command, "\n")] = '\0';
 void execute_user_command(char *user_command)
 {
 pid_t child_process_id = fork();
-char *arguments[] = {user_command, NULL};
+char *arguments[2];
 
 if (child_process_id == -1)
 {
@@ -68,6 +68,8 @@ exit(EXIT_FAILURE);
 }
 else if (child_process_id == 0)
 {
+arguments[0] = user_command;
+arguments[1] = NULL;
 execvp(user_command, arguments);
 perror("execvp");
 exit(EXIT_FAILURE);
