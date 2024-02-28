@@ -4,10 +4,11 @@
  * main - entry point
  * Runs the shell in interactive or non-interactive
  * mode based on command-line arguments.
- * Return: nothing
+ * Return: 0 on success
  */
-int main(void) {
-char user_command[256]; // Define a buffer to store user input
+int main(void)
+{
+char user_command[127]; /* Define a buffer to store user input */
 
 while (1)
 {
