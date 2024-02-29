@@ -20,7 +20,7 @@ write(file_descriptor, &input_string[index], 1);
  */
 void show_prompt(void)
 {
-my_print("$ ", STDOUT_FILENO);
+my_print("#cisfun$ ", STDOUT_FILENO);
 }
 
 /**
@@ -60,6 +60,7 @@ void execute_user_command(char *user_command)
 {
 pid_t child_process_id = fork();
 char *arguments[2];
+extern char **environ;
 /*char full_command_path[256];*/
 
 if (child_process_id == -1)
@@ -71,10 +72,12 @@ else if (child_process_id == 0)
 {
 arguments[0] = user_command;
 arguments[1] = NULL;
-execvp(user_command, arguments);
-perror("execve");
+execve(user_command, arguments, environ);
+perror(user_command);
 exit(EXIT_FAILURE);
 }
 else
+{   
 wait(NULL);
+}
 }
