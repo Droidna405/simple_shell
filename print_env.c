@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * print_environ - Prints all the environment variables.
+ * print_env - Prints all the environment variables.
  *
  * Return: Nothing.
  */
